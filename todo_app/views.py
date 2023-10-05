@@ -15,10 +15,19 @@ class TaskCreateView(generic.CreateView):
     fields = ["content", "datetime_deadline", "tags"]
     success_url = reverse_lazy("todo_app:task-list")
 
+    def form_valid(self, form):
+        form.instance.is_done = False
+        return super().form_valid(form)
+
 
 class TaskUpdateView(generic.UpdateView):
     model = Task
     fields = ["content", "datetime_deadline", "tags"]
+    success_url = reverse_lazy("todo_app:task-list")
+
+
+class TaskDeleteView(generic.DeleteView):
+    model = Task
     success_url = reverse_lazy("todo_app:task-list")
 
 

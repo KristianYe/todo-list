@@ -37,7 +37,7 @@
             	{{ tag }}
             {% endfor %}
             <a style="text-decoration: none" class="ms-2" href="{% url 'todo_app:task-update' pk=task.id %}">Update</a>
-            <a style="text-decoration: none" class="ms-2" href="#">Delete</a>
+            <a style="text-decoration: none" class="ms-2" href="{% url 'todo_app:task-delete' pk=task.id %}">Delete</a>
           </p>
         </div>
       </li>
