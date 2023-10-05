@@ -7,7 +7,7 @@
   </h1>
   <ul class="mt-5 list-group">
     {% for task in task_list %}
-    	<li class="list-group-item">
+      <li class="list-group-item">
         <div class="container-fluid d-flex">
           <p style="font-size: 24px; font-weight: 500;">
             {{ task }}
@@ -34,7 +34,7 @@
           <p style="font-size: 21px; font-weight: 500; color: rgb(128,128,128)">
             Tags:
             {% for tag in task.tags.all %}
-            	{{ tag }}
+              {{ tag }}
             {% endfor %}
             <a style="text-decoration: none" class="ms-2" href="{% url 'todo_app:task-update' pk=task.id %}">Update</a>
             <a style="text-decoration: none" class="ms-2" href="{% url 'todo_app:task-delete' pk=task.id %}">Delete</a>
