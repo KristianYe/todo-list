@@ -16,12 +16,12 @@
             <p class="ms-2 p-status" style="color: green;">
               Done
             </p>
-            <a class="btn btn-secondary ms-auto h-75" href="#">Undo</a>
+            <a class="btn btn-secondary ms-auto h-75" href="{% url 'todo_app:task-toggle-status' pk=task.id %}">Undo</a>
           {% else %}
             <p class="ms-2 p-status" style="color: red;">
               Not done
             </p>
-            <a class="btn btn-success ms-auto h-75" href="#">Complete</a>
+            <a class="btn btn-success ms-auto h-75" href="{% url 'todo_app:task-toggle-status' pk=task.id %}">Complete</a>
           {% endif %}
         </div>
         <div class="container-fluid d-flex">
