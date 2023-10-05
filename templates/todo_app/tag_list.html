@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Tags
+    <a class="btn btn-primary ms-2" href="{% url 'todo_app:tag-create' %}">Add</a>
+  </h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for tag in tag_list %}
+      <tr>
+        <th scope="row">{{ tag }}</th>
+        <td><a class="btn btn-primary" href="{% url 'todo_app:tag-update' pk=tag.id %}">Update</a></td>
+        <td><a class="btn btn-danger" href="{% url 'todo_app:tag-delete' pk=tag.id %}">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

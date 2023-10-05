@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    TODO list
+    <a class="btn btn-primary ms-2" href="{% url 'todo_app:task-create' %}">Create</a>
+  </h1>
+  <ul class="mt-5 list-group">
+    {% for task in task_list %}
+      <li class="list-group-item">
+        <div class="container-fluid d-flex">
+          <p style="font-size: 24px; font-weight: 500;">
+            {{ task }}
+          </p>
+          {% if task.is_done %}
+            <p class="ms-2 p-status" style="color: green;">
+              Done
+            </p>
+            <a class="btn btn-secondary ms-auto h-75" href="{% url 'todo_app:task-toggle-status' pk=task.id %}">Undo</a>
+          {% else %}
+            <p class="ms-2 p-status" style="color: red;">
+              Not done
+            </p>
+            <a class="btn btn-success ms-auto h-75" href="{% url 'todo_app:task-toggle-status' pk=task.id %}">Complete</a>
+          {% endif %}
+        </div>
+        <div class="container-fluid d-flex">
+          <p>Created: {{ task.datetime_created_at }}</p>
+          {% if task.datetime_deadline %}
+            <p class="ms-2" style="color: darkred">Deadline: {{ task.datetime_deadline }} </p>
+          {% endif %}
+        </div>
+        <div class="container-fluid d-flex">
+          <p style="font-size: 21px; font-weight: 500; color: rgb(128,128,128)">
+            Tags:
+            {% for tag in task.tags.all %}
+              {{ tag }}
+            {% endfor %}
+            <a style="text-decoration: none" class="ms-2" href="{% url 'todo_app:task-update' pk=task.id %}">Update</a>
+            <a style="text-decoration: none" class="ms-2" href="{% url 'todo_app:task-delete' pk=task.id %}">Delete</a>
+          </p>
+        </div>
+      </li>
+    {% endfor %}
+
+  </ul>
+{% endblock %}
